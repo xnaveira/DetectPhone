@@ -6,12 +6,12 @@
 
 BTHW="xx:xx:xx:xx:xx:xx"  # Enter your Phone Bluetooth hardware address
 LOCKPRG="xscreensaver"		# Screen saver program
+LOCKCOMMAND="xscreensaver-command -lock"
 SLEEP=5
 
 ME=`whoami`
 while true
 do	
-        sleep 15 #give me time to run away
 	# Ping the phone (needs sudo permissions
 	# chmod u+s /usr/bin/l2ping
 	l2ping -t 5 -c 1 $BTHW >/dev/null 2>/dev/null
@@ -21,6 +21,8 @@ do
 		pkill $LOCKPRG
                 $LOCKPRG& #you want it running in the background to be able to lock the screen afterwards
 		xset dpms force on
+        else # Phone not present
+                $LOCKCOMMAND
 	fi
 	sleep $SLEEP
 done
