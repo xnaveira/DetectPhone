@@ -1,5 +1,20 @@
 DetectPhone
 ===========
+
+This is a modification of the original DetectPhone by Vasilis.Vlachoudis@cern.ch (see original README below
+
+
+I modified the original script for XFCE. In xfce the xscreensaver program must be running in order to be able to lock the screen, so you need to reload it after you kill it with the proximity of your phone. On reload the xcreen won't be locked again, but the process will be put in the background listening for the next time you press Ctrl-alt-del.
+
+I also introduced an initial delay of 15 seconds so you get the chance to run away from your computer once you have locked it before the script begins to check for the proximity of your phone.
+
+To install as autostart go to "settings" in the XFCE menu, open "Session and startup" and add the script under the "Application autostart" tab.
+
+
+ORIGINAL README:
+===============
+
+
                                                                         o o
                                                                       ____oo_
                                 detect_phone                         /||    |\
@@ -56,18 +71,21 @@ script file. You have to modify the 3 lines
    with the appropriate bluetooth hardware address you want to detect. To
    Find out your hardware address either you have to look on your phone's
    system settings, or by making it visible and scan it with the command
-   $ hciconfig scan
+   $ hcitool scan
 
 2. LOCKPRG="kscreenlocker"
    Replace the screen locking program with appropriate one for your desktop
    environment
    - KDE:   kscreenlocker
    - GNOME: gnome-screensaver? (Could someone verify if this is the correct one)
-   - XFCE:  xscreensaver?                          -//-
+   - XFCE:  xscreensaver                          -//-
    - LXDE:  xscreemsaver?                          -//-
 
 3. SLEEP=5
    Set the sleep time (seconds) for checking.
+
+
+
 
 
 Install
