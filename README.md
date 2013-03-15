@@ -6,8 +6,6 @@ This is a modification of the original DetectPhone by Vasilis.Vlachoudis@cern.ch
 
 I modified the original script for XFCE. In XFCE the xscreensaver program must be running in order to be able to lock the screen, so you need to reload it after you kill it with the proximity of your phone. On reload the screen won't be locked again, but the process will be put in the background listening for the next time you press Ctrl-alt-del.
 
-I also introduced an initial delay of 15 seconds so you get the chance to run away from your computer once you have locked it before the script begins to check for the proximity of your phone.
-
 To install as autostart go to "settings" in the XFCE menu, open "Session and startup" and add the script under the "Application autostart" tab.
 
 
