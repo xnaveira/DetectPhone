@@ -1,13 +1,15 @@
 #!/bin/bash
 # author: Vasilis.Vlachoudis@cern.ch
-# date: 13 Mar 2013
+# date: 15 Mar 2013
 # modified by: xnaveira ##*at*$$ gmail.com
 # This is a modified version for XFCE
 
 BTHW="xx:xx:xx:xx:xx:xx"  # Enter your Phone Bluetooth hardware address
 LOCKPRG="xscreensaver"		# Screen saver program
 LOCKCOMMAND="xscreensaver-command -lock"
+STATUSCOMMAND="xscreensaver-command -time"
 SLEEP=5
+PID=$(pgrep -u $USER $LOCKPRG | head -1)
 
 ME=`whoami`
 while true
@@ -18,9 +20,11 @@ do
 	RC=$?
 	if [ $RC = 0 ]; then
 		# Phone present...
-		pkill $LOCKPRG
-                $LOCKPRG& #you want it running in the background to be able to lock the screen afterwards
-		xset dpms force on
+                STATUS=$($STATUSCOMMAND)
+                if [[ "$STATUS" == *locked* ]]; then #kill only if the screen is locked
+		    kill -HUP $PID
+		    xset dpms force on
+                fi
         else # Phone not present
                 $LOCKCOMMAND
 	fi
